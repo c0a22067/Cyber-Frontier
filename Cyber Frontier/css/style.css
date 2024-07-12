@@ -110,7 +110,7 @@ main > article,
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	background: #e53927;	/*背景色*/
+	background: #3e2cff;	/*背景色*/
 	position: relative;
 }
 
@@ -127,12 +127,12 @@ body:not(.home) header #logo img {
 /*トップページのロゴ*/
 .home header #logo {
 	width: 40%;				/*ロゴの幅*/
-	background: #e53927;	/*ロゴの背景色*/
+	background: #1d1685;	/*ロゴの背景色*/
 	border-radius: 50%;		/*円形にする指定。30pxなどにすれば角が丸くなった四角形になります。*/
 	position: absolute;z-index: 1;
 	bottom: 25%;	/*ヘッダーに対して、下からの配置場所の指定*/
 	left: 30%;		/*ヘッダーに対して、左からの配置場所の指定*/
-	border: 10px solid #fff;	/*枠線の幅、線種、色*/
+	border: 10px solid #07104d;	/*枠線の幅、線種、色*/
 }
 
 
@@ -242,7 +242,7 @@ body:not(.home) header #logo img {
 	width: 100%;		/*ブロックの幅。100%にすれば画面いっぱいに広がります。*/
 	height: 100%;	/*ブロックの高さ*/
 	padding: 120px 20px 20px;	/*上、左右、下へのブロック内の余白*/
-	background: #fff;			/*背景色*/
+	background: #000033;			/*背景色*/
 	text-align: center;			/*テキストを中央に*/
 	animation: animation1 0.2s both;	/*animation.cssの、animation1を実行する。0.2sは0.2秒の事。*/
 	box-shadow: 0px 0px 20px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順番。0,0,0は黒の事で0.2は色が20%出た状態。*/
@@ -268,7 +268,7 @@ body:not(.home) header #logo img {
 	cursor: pointer;
 	left: 0px;			/*左からの配置場所指定*/
 	top: 0px;			/*上からの配置場所指定*/
-	background: #e53927;	/*背景色*/
+	background: #3e2cff;	/*背景色*/
 	padding: 20px 0px;		/*上下、左右へのブロック内の余白*/
 	width: 80px;			/*幅*/
 	text-align: center;		/*中身をセンタリング*/
@@ -349,7 +349,7 @@ main h2 {
 main h2 span {
 	display: block;
 	font-size: 0.5em;	/*文字サイズ。親要素の50%に。*/
-	color: #e53927;		/*文字色*/
+	color: #27e5b2;		/*文字色*/
 }
 
 /*mainブロック内のh3タグ*/
@@ -539,7 +539,7 @@ ul.submenu li a:hover {
 	justify-content: space-between;	/*並びかたの種類の指定*/
 	margin-bottom: 30px;	/*ボックス同士の上下間に空けるスペース*/
 	padding: 20px;			/*ボックス内の余白*/
-	background: #fff;		/*背景色*/
+	background: #27393f;		/*背景色*/
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、ぼかし幅、0,0,0は黒の事で0.1は色が10%出た状態。*/
 	width: 48%;				/*幅*/
 	margin-right: 4%;	/*右側に空けるスペース*/
@@ -656,8 +656,8 @@ ul.submenu li a:hover {
 	justify-content: center;	/*並びかたの種類の指定*/
 	align-items: center;		/*垂直揃えの指定。上下中央に配置されるように。*/
 	font-size: 0.6em;		/*文字サイズ*/
-	background: #ff0000;	/*背景色*/
-	color: #fff;			/*文字色*/
+	background: #98f6ff;	/*背景色*/
+	color: #3e2cff;			/*文字色*/
 	width: 60px;			/*幅*/
 	height: 60px;			/*高さ*/
 	line-height: 1.5;		/*行間*/
@@ -686,7 +686,7 @@ p.btn {margin: 0;}
 	display: block;
 	font-size: 1em;
 	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順。0,0,0は黒の事で0.2は色が20%出た状態。*/
-	background: #e53927;	/*背景色*/
+	background: #104b60;	/*背景色*/
 	letter-spacing: 0.1em;	/*文字間隔を少し広くする指定*/
 	color: #fff;			/*文字色*/
 	transition: 0.3s;		/*hoverまでにかける時間。0.3秒。*/
