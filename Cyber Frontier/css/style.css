@@ -870,7 +870,7 @@ main h2.flag::before {left: 0px;}
 main h2.flag::after {right: 0px;transform: scale(-1, 1);}
 
 
-/*　※注意！　下の閉じカッコ　}　はこのブロックに必要なので、削除しないで下さい。　*/
+/*　※注意！　下の閉じカッコ　}　はこのブロックに必要なので、削除しないで下さい。。　*/
 
 }
 
