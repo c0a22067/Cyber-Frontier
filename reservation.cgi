@@ -17,7 +17,7 @@ book_id = get_random(5)
 try:
     connection = MySQLdb.connect(
         host='localhost',
-        user='user1',
+        user='root',
         passwd='passwordA1!',
         db='booking',
         charset='utf8'
@@ -30,36 +30,34 @@ try:
     mail = user_data[1] if user_data and user_data[1] else ''
 
 
-    # 現在時刻を取得
+
     current_time = datetime.now()
 
-    # book_dateをDATE形式に変換
+
     book_date = datetime.now()
     book_date = book_date.replace(second=0)
 
-    # 10:00から17:00まで30分間隔で時間を生成
-    #テスト中は営業時間を変更して挙動を確認
-    #発表時の時刻も考慮すること！
+
     start_time = book_date.replace(hour=10, minute=0)
     end_time = book_date.replace(hour=20, minute=0)
     time_slots = []
 
     while start_time <= end_time:
-        # 現在時刻と比較して過去の時間は無効化
+
         if start_time > current_time:
             time_slots.append(start_time)
         start_time += timedelta(minutes=30)
 
-    # 予約可能な時間をHTMLとして生成
+
     time_slots_html = ""
     for slot in time_slots:
         slot_str = slot.strftime('%Y-%m-%d %H:%M:%S')
         
-        # その時間の予約数をカウント
+
         cursor.execute("SELECT COUNT(*) FROM booking_log WHERE attraction=%s AND book_date=%s", (attraction, slot_str))
         count = cursor.fetchone()[0]
         
-        # 同じユーザーが同じ時間に予約しているか確認
+
         cursor.execute("SELECT COUNT(*) FROM booking_log WHERE user_id=%s AND book_date=%s", (user_id, slot_str))
         user_count = cursor.fetchone()[0]
         
