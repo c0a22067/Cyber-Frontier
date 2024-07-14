@@ -1,17 +1,42 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>Cyber Frontierのアトラクション詳細ページ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="アトラクションの詳細が載っています">
-<link rel="stylesheet" href="css/style.css">
-</head>
+#!/usr/bin/python3
 
-<body>
+import cgi
+import crypt
+import os
+
+form = cgi.FieldStorage()
+user_name = form.getfirst('user_name')
+mail_address = form.getfirst('mail_address')
+password = form.getfirst('password')
+phone_number = form.getfirst('phone_number')
+face_pict = form.getfirst('face_pict')
+
+
+
+
+print("Content-Type: text/html\n")
+
+htmlText = '''
+<!DOCTYPE HTML>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>登録内容確認｜Cyber Frontier</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cyber Frontierの登録内容確認ページです">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="道の駅"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="遊園地"></a></h1>
+<ul id="lang-nav">
+<li><a href="">English</a></li>
+<li><a href="">中文</a></li>
+</ul>
+
 </header>
 
 <div id="container">
@@ -28,66 +53,29 @@
 <main>
 
 <section>
+<center>
+        <div id="wrapper">
+この情報を登録しますか？<br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br>
+<form action="subscribe.html" method="post">
+                    <button type="submit">戻る</button><br>
+            </form>
+<form action="subscribe.cgi" method="post">
+<input type="hidden" name="user_name" value="%s">
+<input type="hidden" name="mail_address" value="%s">
+<input type="hidden" name="password" value="%s">
+<input type="hidden" name="phone_number" value="%s">
+<input type="hidden" name="face_pict" value="%s">
+                    <button type="submit">登録</button>
+            </form>
 
-<h2 class="flag">イベント<span>Event</span></h2>
-
-<table class="ta1">
-<caption>12月のイベントのお知らせ</caption>
-<tr>
-<th>12月1日</th>
-<td><img src="images/sample1.jpg" alt="">
-毎月恒例の朝市を開催します。
-<ul>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-</ul>
-<p class="btn"><a href="#">詳しくはこちら</a></p>
-</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-</table>
-
-</section>
+        </div>
+        
+        </center>
 
 </main>
 
@@ -150,6 +138,7 @@
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。</p>
+
 </div>
 <!--/.sh-->
 
@@ -170,6 +159,10 @@
 <!--jQueryの読み込み-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!--スライドショー（vegas）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
+<script src="js/vegas.js"></script>
+
 <!--パララックス（inview）-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
 <script src="js/jquery.inview_set.js"></script>
@@ -180,5 +173,13 @@
 <!--ページの上部へ戻るボタン-->
 <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
 
-</body>
+    </body>
 </html>
+'''%(user_name, mail_address, password, phone_number, face_pict, user_name, mail_address, password, phone_number, face_pict)
+
+print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
+
+
+
+
+

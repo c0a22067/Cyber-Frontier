@@ -1,17 +1,112 @@
-<!DOCTYPE html>
+#!/usr/bin/python3
+
+import cgi
+import crypt
+import os
+import MySQLdb
+from http import cookies
+import random, string
+user_id = ""
+form = cgi.FieldStorage()
+user_name = form.getfirst('user_id')
+password = form.getfirst('password')
+
+def get_random_str(n):
+	char_data = string.digits + string.ascii_lowercase + string.ascii_uppercase
+	return ''.join([random.choice(char_data) for i in range(n)])
+
+connection = MySQLdb.connect(
+	host='localhost',
+	user='user1',
+	passwd='passwordA1!',
+	db='booking',
+	charset='utf8'
+)
+
+cursor = connection.cursor()
+sql = "select * from User_data"
+cursor.execute(sql)
+rows = cursor.fetchall()
+
+hashed_password = ''
+message = ''
+for row in rows:
+	if row[1] == user_name:
+		hashed_password = row[3]
+		user_id = str(row[0])
+		break
+connection.close()
+
+cpass = '1'
+salt = hashed_password[:29]
+if(password != None and salt != ''):
+	cpass = crypt.crypt(password, salt)
+
+location = './login.html'
+
+f_login = -1
+if (cpass==hashed_password):
+	f_login = 0
+	location = './mypage.html'
+	message = 'ログインに成功しました'
+else:
+	message = 'ログインに失敗しました'
+	location = './login.html'
+
+
+
+session_id = get_random_str(64)
+
+connection = MySQLdb.connect(
+	host='localhost',
+	user='user1',
+	passwd='passwordA1!',
+	db='booking',
+	charset='utf8'
+)
+
+cursor = connection.cursor()
+
+sql = "insert into `Session` (`user_id`, `session_id`) values ('"+ user_id +"', '" + session_id + "') on duplicate key update session_id = '" + session_id + "'"
+
+cursor.execute(sql)
+
+connection.commit()
+
+connection.close()
+
+if(f_login == 0):
+	print("Conten-Type: text/html")
+	print("Set-Cookie: user_id=" + user_id)
+	print("Set-Cookie: session_id=" + session_id)
+
+else:
+	print("Content-type: text/html")
+	print("Set-Cookie: user_id=user?")
+	print("Set-Cookie: session_id=abcd1234")
+
+print("Content-Type: text/html\n")
+
+htmlText = '''
+<!DOCTYPE HTML>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Cyber Frontierのアトラクション詳細ページ</title>
+<title>ログイン｜Cyber Frontier</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="アトラクションの詳細が載っています">
+<meta name="description" content="Cyber Frontierのログインページです">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="道の駅"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="遊園地"></a></h1>
+<ul id="lang-nav">
+<li><a href="">English</a></li>
+<li><a href="">中文</a></li>
+</ul>
+
 </header>
 
 <div id="container">
@@ -28,66 +123,16 @@
 <main>
 
 <section>
+<center>
+<div id="wrapper">
+<form action="%s" method="post">
+%s<br>
+<button type="submit">続ける</button>
+</form>
+</div>
 
-<h2 class="flag">イベント<span>Event</span></h2>
+</center>
 
-<table class="ta1">
-<caption>12月のイベントのお知らせ</caption>
-<tr>
-<th>12月1日</th>
-<td><img src="images/sample1.jpg" alt="">
-毎月恒例の朝市を開催します。
-<ul>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-</ul>
-<p class="btn"><a href="#">詳しくはこちら</a></p>
-</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-</table>
-
-</section>
 
 </main>
 
@@ -150,6 +195,7 @@
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。</p>
+
 </div>
 <!--/.sh-->
 
@@ -170,6 +216,10 @@
 <!--jQueryの読み込み-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!--スライドショー（vegas）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
+<script src="js/vegas.js"></script>
+
 <!--パララックス（inview）-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
 <script src="js/jquery.inview_set.js"></script>
@@ -180,5 +230,14 @@
 <!--ページの上部へ戻るボタン-->
 <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
 
+
 </body>
 </html>
+'''%(location, message)
+
+print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
+
+
+
+
+
