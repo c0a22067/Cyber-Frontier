@@ -1,4 +1,3 @@
-キーボード ショートカットの更新 … 2024年8月1日木曜日に、ドライブのキーボード ショートカットが更新され、頭文字検索が利用できるようになります。詳細
 @charset "utf-8";
 
 
@@ -111,7 +110,7 @@ main > article,
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	background: #e53927;	/*背景色*/
+	background: #3e2cff;	/*背景色*/
 	position: relative;
 }
 
@@ -128,12 +127,12 @@ body:not(.home) header #logo img {
 /*トップページのロゴ*/
 .home header #logo {
 	width: 40%;				/*ロゴの幅*/
-	background: #e53927;	/*ロゴの背景色*/
+	background: #1d1685;	/*ロゴの背景色*/
 	border-radius: 50%;		/*円形にする指定。30pxなどにすれば角が丸くなった四角形になります。*/
 	position: absolute;z-index: 1;
 	bottom: 25%;	/*ヘッダーに対して、下からの配置場所の指定*/
 	left: 30%;		/*ヘッダーに対して、左からの配置場所の指定*/
-	border: 10px solid #fff;	/*枠線の幅、線種、色*/
+	border: 10px solid #07104d;	/*枠線の幅、線種、色*/
 }
 
 
@@ -243,7 +242,7 @@ body:not(.home) header #logo img {
 	width: 100%;		/*ブロックの幅。100%にすれば画面いっぱいに広がります。*/
 	height: 100%;	/*ブロックの高さ*/
 	padding: 120px 20px 20px;	/*上、左右、下へのブロック内の余白*/
-	background: #fff;			/*背景色*/
+	background: #000033;			/*背景色*/
 	text-align: center;			/*テキストを中央に*/
 	animation: animation1 0.2s both;	/*animation.cssの、animation1を実行する。0.2sは0.2秒の事。*/
 	box-shadow: 0px 0px 20px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順番。0,0,0は黒の事で0.2は色が20%出た状態。*/
@@ -269,7 +268,7 @@ body:not(.home) header #logo img {
 	cursor: pointer;
 	left: 0px;			/*左からの配置場所指定*/
 	top: 0px;			/*上からの配置場所指定*/
-	background: #e53927;	/*背景色*/
+	background: #3e2cff;	/*背景色*/
 	padding: 20px 0px;		/*上下、左右へのブロック内の余白*/
 	width: 80px;			/*幅*/
 	text-align: center;		/*中身をセンタリング*/
@@ -350,7 +349,7 @@ main h2 {
 main h2 span {
 	display: block;
 	font-size: 0.5em;	/*文字サイズ。親要素の50%に。*/
-	color: #e53927;		/*文字色*/
+	color: #27e5b2;		/*文字色*/
 }
 
 /*mainブロック内のh3タグ*/
@@ -368,6 +367,53 @@ main p {
 }
 
 main p + p {margin-top: -10px;}
+
+
+/*login form 7/12追加*/ 
+body { background:rgb(30,30,40); }
+form { max-width:420px; margin:50px auto; }
+
+.login-input {
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:2px solid #CC6666;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.login-input:focus { border:2px solid #CC4949; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#CC6666;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#CC4949; }
 
 
 /*フッターメニュー設定
@@ -540,7 +586,7 @@ ul.submenu li a:hover {
 	justify-content: space-between;	/*並びかたの種類の指定*/
 	margin-bottom: 30px;	/*ボックス同士の上下間に空けるスペース*/
 	padding: 20px;			/*ボックス内の余白*/
-	background: #fff;		/*背景色*/
+	background: #27393f;		/*背景色*/
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、ぼかし幅、0,0,0は黒の事で0.1は色が10%出た状態。*/
 	width: 48%;				/*幅*/
 	margin-right: 4%;	/*右側に空けるスペース*/
@@ -579,7 +625,7 @@ ul.submenu li a:hover {
 	display: flex;			/*flexボックスを使う指定*/
 	margin-bottom: 30px;	/*ボックス同士の上下間に空けるスペース*/
 	padding: 10px;			/*ボックス内の余白*/
-	background: #fff;		/*背景色*/
+	background: #27393f;		/*背景色*/
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、ぼかし幅、0,0,0は黒の事で0.1は色が10%出た状態。*/
 }
 
@@ -657,8 +703,8 @@ ul.submenu li a:hover {
 	justify-content: center;	/*並びかたの種類の指定*/
 	align-items: center;		/*垂直揃えの指定。上下中央に配置されるように。*/
 	font-size: 0.6em;		/*文字サイズ*/
-	background: #ff0000;	/*背景色*/
-	color: #fff;			/*文字色*/
+	background: #98f6ff;	/*背景色*/
+	color: #3e2cff;			/*文字色*/
 	width: 60px;			/*幅*/
 	height: 60px;			/*高さ*/
 	line-height: 1.5;		/*行間*/
@@ -687,7 +733,7 @@ p.btn {margin: 0;}
 	display: block;
 	font-size: 1em;
 	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順。0,0,0は黒の事で0.2は色が20%出た状態。*/
-	background: #e53927;	/*背景色*/
+	background: #104b60;	/*背景色*/
 	letter-spacing: 0.1em;	/*文字間隔を少し広くする指定*/
 	color: #fff;			/*文字色*/
 	transition: 0.3s;		/*hoverまでにかける時間。0.3秒。*/
@@ -773,7 +819,7 @@ p.btn {margin: 0;}
 /*bg1（背景に色がついたタイプ）
 ---------------------------------------------------------------------------*/
 .bg1 {
-	background: #fff5e1 url(../images/bg_dot.png);	/*背景色、背景画像の読み込み*/
+	background: #27393f url(../images/);	/*背景色、背景画像の読み込み*/
 }
 
 
@@ -865,7 +911,7 @@ main h2.flag::after {
 	bottom: 0px;
 	width: 100px;	/*画像の幅*/
 	height: 100px;	/*画像の高さ*/
-	background: url(../images/bg_flag.png) no-repeat left center / contain;	/*読み込む画像*/
+	background: url(../images/) no-repeat left center / contain;	/*読み込む画像*/
 }
 main h2.flag::before {left: 0px;}
 main h2.flag::after {right: 0px;transform: scale(-1, 1);}

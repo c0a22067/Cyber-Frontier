@@ -10,7 +10,7 @@ print("""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>道の駅・物産館イメージ 無料ホームページテンプレート tp_bussan2</title>
+<title>量子トンネルコースター</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <link rel="stylesheet" href="style.css">
@@ -32,30 +32,28 @@ print("""<!DOCTYPE html>
 <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/sample9.png" alt="道の駅"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="道の駅"></a></h1>
 </header>
 
 <div id="container">
 
 <nav id="header-menu">
 <ul>
-<li><a href="attraction.html">施設のご案内<i class="fas fa-info-circle"></i></a></li>
-<li><a href="shopping.html">お買い物<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">イベント<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="mypage.html">アクセス<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-info-circle"></i></a></li>
+<li><a href="shopping.html">shopping<i class="fas fa-shopping-basket"></i></a></li>
+<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
+<li><a href="mypage.html">access<i class="fas fa-map-marker-alt"></i></a></li>
 </ul>
 </nav>
 
 <main>
 
 <article>
-
-<h2>詳細ページ</h2>
-
-<p class="c"><img class="detail-img" src="images/sample6.png" alt=""></p>
-
 <table class="ta1">
 <caption>量子トンネルコースター</caption>
+<p class="c"><img class="detail-img" src="images/sample6.png" alt=""></p>
+
+
 <tr>
 <th>特徴</th>
 <td>コースターのテーマは量子トンネル効果で、コース全体が未来的なデザインで装飾されています。
@@ -110,27 +108,7 @@ print("""<!DOCTYPE html>
 <li><a href="event.html">イベント</a></li>
 <li><a href="mypage.html">アクセス</a></li>
 </ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
+
 </div>
 <!--/#footermenu-->
 

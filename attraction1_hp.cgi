@@ -26,7 +26,7 @@ print("""<!DOCTYPE html>
 
 <nav id="header-menu">
 <ul>
-<li><a href="attraction.html">attraction<i class="fas fa-rocket"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
 <li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
 <li><a href="mypage.html">mypage<i class="fas fa-user"></i></a></li>
@@ -37,11 +37,8 @@ print("""<!DOCTYPE html>
 
 <section>
 
-<h2 class="flag">attraction information<span>Information</span></h2>
-<p class="c">横並びブロックを使う場合、ブロック全体を囲んでいる「list-container」タグを入れ忘れないで下さい。<br>
-これがないとレイアウトが崩れます。</p>
-<p class="c">出現してくるアニメーションは他にも色々ご用意しております。<br>
-テンプレート内の<a href="sample_inview.html">sample_inview.htmlをお読み下さい。</a></p>
+<h2 class="flag">アトラクション情報<span>Attraction information</span></h2>
+
 
 <div class="list-container">
 
@@ -90,19 +87,19 @@ print("""<!DOCTYPE html>
 
 <section>
 
-<h2>アトラクションのご案内<span>Information</span></h2>
-
-<div class="list2 blur">
-<figure><a href="article.html"><img src="images/sample2.png" alt=""></a></figure>
+<h2>施設案内<span>Information</span></h2>
+<div class="list-container">
+<div class="list blur">
+<figure><a href="shopping.html"><img src="images/sample2.png" alt=""></a></figure>
 <div class="text">
 <h4>Official Store</h4>
 <p>Cyber Frontier公式グッズなどが販売中</p>
-
-<p class="btn"><a href="article.html">詳しくみる</a></p>
 </div>
+<p class="btn"><a href="shopping.html">詳しくみる</a></p>
+
 </div>
 
-<div class="list2 blur">
+<div class="list blur">
 <figure><a href="article.html"><img src="images/sample4.png" alt=""></a></figure>
 <div class="text">
 <h4>Neon Nexus Bistro</h4>
@@ -111,7 +108,7 @@ print("""<!DOCTYPE html>
 </div>
 </div>
 
-<div class="list2 blur">
+<div class="list blur">
 <figure><a href=".html"><img src="images/sample3.png" alt=""></a></figure>
 <div class="text">
 <h4>Circuit City Grill</h4>
@@ -119,12 +116,14 @@ print("""<!DOCTYPE html>
 </div>
 </div>
 
-<div class="list2 blur">
+<div class="list blur">
 <figure><a href="article.html"><img src="images/sample5.png" alt=""></a></figure>
 <div class="text">
 <h4>Hyper Bit Theater</h4>
 <p>様々なショーが開催されるシアター。開催中のイベントはこちら</p>
 </div>
+</div>
+
 </div>
 
 </section>
@@ -141,27 +140,7 @@ print("""<!DOCTYPE html>
 <li><a href="event.html">Event</a></li>
 <li><a href="mypage.html">Mypage</a></li>
 </ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
+
 </div>
 <!--/#footermenu-->
 
@@ -176,7 +155,7 @@ print("""<!DOCTYPE html>
 <nav>
 <ul>
 <li><a href="index.html">Home</a></li>
-<li><a href="attraction.html">AttractionInfo</a></li>
+<li><a href="attraction1_hp.cgi">AttractionInfo</a></li>
 <li><a href="shopping.html">Shopping</a></li>
 <li><a href="event.html">Event</a></li>
 <li><a href="mypage.html">Mypage</a></li>
