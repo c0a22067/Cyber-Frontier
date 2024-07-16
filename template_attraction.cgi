@@ -42,7 +42,7 @@ print("""<!DOCTYPE html>
 <li><a href="attraction1_hp.cgi">attraction<i class="fas fa-info-circle"></i></a></li>
 <li><a href="shopping.html">shopping<i class="fas fa-shopping-basket"></i></a></li>
 <li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="mypage.html">access<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="mypage.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
 </ul>
 </nav>
 
@@ -122,11 +122,11 @@ print("""<!DOCTYPE html>
 
 <nav>
 <ul>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="attraction.html">施設のご案内</a></li>
-<li><a href="shopping.html">お買い物</a></li>
-<li><a href="event.html">イベント</a></li>
-<li><a href="mypage.html">アクセス</a></li>
+<li><a href="index.html">Home</a></li>
+<li><a href="attraction1_hp.cgi">AttractionInfo</a></li>
+<li><a href="shopping.html">Shopping</a></li>
+<li><a href="event.html">Event</a></li>
+<li><a href="mypage.html">Mypage</a></li>
 </ul>
 </nav>
 

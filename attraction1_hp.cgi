@@ -59,16 +59,17 @@ print("""<!DOCTYPE html>
 <p>サイバー空間の悪夢をテーマにした革新的なホラーアトラクション</p>
 <p>単なるホラーアトラクションを超えた、最新技術と恐怖の融合が体感できる</p>
 </div>
-<p class="btn"><a href="article.html">詳しくみる</a></p>
+<p class="btn"><a href="attraction1_hp.cgi">詳しくみる</a></p>
 </div>
 
 <div class="list blur">
-<figure><a href="article.html"><img src="images/sample8.png" alt=""></a></figure>
+<figure><a href="attraction1_hp.cgi"><img src="images/sample8.png" alt=""></a></figure>
 <div class="text">
 <h4>Like A Maze</h4>
 <p>最新のホログラフィック技術とインタラクティブなデジタルエフェクトを駆使し、訪問者に未来的で挑戦的な体験ができる</p>
 <p>デジタルと現実が交錯する世界で、挑戦と興奮を体感せよ</p>
 </div>
+<p class="btn"><a href="attraction1_hp.cgi">詳しくみる</a></p>
 </div>
 
 <div class="list blur">
@@ -78,6 +79,7 @@ print("""<!DOCTYPE html>
 <p>最新のシミュレーション技術とホログラフィックエフェクトを駆使しバーチャルリアリティの中でドリフトレースが体験できる</p>
 <p>技術とスピードが試されるこのアリーナで、最高のドリフトレーサーを目指せ</p>
 </div>
+<p class="btn"><a href="attraction1_hp.cgi">詳しくみる</a></p>
 </div>
 
 </div>
@@ -104,7 +106,7 @@ print("""<!DOCTYPE html>
 <div class="text">
 <h4>Neon Nexus Bistro</h4>
 <p>ネオンライトが輝くパークを一望できるレストラン</p>
-<p class="btn"><a href="article.html">詳しくみる</a></p>
+<p class="btn"><a href="attraction1_hp.cgi">詳しくみる</a></p>
 </div>
 </div>
 
@@ -114,6 +116,7 @@ print("""<!DOCTYPE html>
 <h4>Circuit City Grill</h4>
 <p>時の進みがゆっくりになる不思議なレストラン</p>
 </div>
+<p class="btn"><a href="attraction1_hp.cgi">詳しくみる</a></p>
 </div>
 
 <div class="list blur">
@@ -121,6 +124,7 @@ print("""<!DOCTYPE html>
 <div class="text">
 <h4>Hyper Bit Theater</h4>
 <p>様々なショーが開催されるシアター。開催中のイベントはこちら</p>
+<p class="btn"><a href="attraction1_hp.cgi">詳しくみる</a></p>
 </div>
 </div>
 
@@ -139,6 +143,17 @@ print("""<!DOCTYPE html>
 <li><a href="shopping.html">Shopping</a></li>
 <li><a href="event.html">Event</a></li>
 <li><a href="mypage.html">Mypage</a></li>
+</ul>
+<ul>
+<li class="title">attraction</li>
+<li><a href="#">DEGITAL HONTET HOUSE</a></li>
+<li><a href="#">LIKE A MAZE</a></li>
+<li><a href="#">量子トンネルコースター</a></li>
+<li><a href="#">MATRIX DRIFT ARENA</a></li>
+</ul>
+<ul>
+<li class="title">event</li>
+<li><a href="event.html">Cyber Treasure Hunter</a></li>
 </ul>
 
 </div>

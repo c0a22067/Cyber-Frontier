@@ -32,7 +32,7 @@ try:
         charset='utf8'
     )
     cursor = connection.cursor()
-		
+  
     sql = "INSERT INTO booking_log (book_id, user_id, name, attraction, book_date) VALUES ('" + book_id + "', '" + user_id + "', '" + name + "', '" + attraction + "', '" + time + "')"
     cursor.execute(sql)
     connection.commit()

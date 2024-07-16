@@ -10,7 +10,7 @@ def fetch_reviews():
     try:
         connection = MySQLdb.connect(
             host='localhost',
-            user='user1',
+            user='root',
             passwd='passwordA1!',
             db='booking',
             charset='utf8'
@@ -20,11 +20,10 @@ def fetch_reviews():
         rows = cursor.fetchall()
         connection.close()
         return rows
-    except MySQLdb.MySQLError as e:
+    except:
         print("Content-Type: text/html\n")
         print("<html><body>")
         print("<h1>Database connection error</h1>")
-        print("<p>{}</p>".format(e))
         print("</body></html>")
         raise
 
@@ -32,20 +31,20 @@ def insert_review(user_id, attraction, title, rating, comment):
     try:
         connection = MySQLdb.connect(
             host='localhost',
-            user='user1',
+            user='root',
             passwd='passwordA1!',
             db='booking',
             charset='utf8'
         )
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO reviews (user_id, attraction, title, rating, comment) VALUES (%s, %s, %s, %s, %s)", (user_id, attraction, title, rating, comment))
+        query = f"INSERT INTO reviews (user_id, attraction, title, rating, comment) VALUES ('{user_id}', '{attraction}', '{title}', '{rating}', '{comment}')"
+        cursor.execute(query)
         connection.commit()
         connection.close()
-    except MySQLdb.MySQLError as e:
+    except:
         print("Content-Type: text/html\n")
         print("<html><body>")
         print("<h1>Database connection error</h1>")
-        print("<p>{}</p>".format(e))
         print("</body></html>")
         raise
 
@@ -171,7 +170,7 @@ else:
 htmlText += '''
 <div class="form-container">
     <h2>Post a Review</h2>
-    <form method="post" action="/proj/attraction1.cgi">
+    <form method="post" action="attraction1.cgi">
         <label for="user_id">User ID:</label>
         <input type="text" id="user_id" name="user_id" required>
         
@@ -296,5 +295,4 @@ htmlText += '''
 '''
 
 print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
-
 
