@@ -126,7 +126,8 @@ body:not(.home) header #logo img {
 
 /*トップページのロゴ*/
 .home header #logo {
-	width: 40%;				/*ロゴの幅*/
+	width: 20%;
+	height: 20%;				/*ロゴの幅*/
 	background: #1d1685;	/*ロゴの背景色*/
 	border-radius: 50%;		/*円形にする指定。30pxなどにすれば角が丸くなった四角形になります。*/
 	position: absolute;z-index: 1;

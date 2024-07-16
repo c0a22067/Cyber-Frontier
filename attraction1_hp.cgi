@@ -29,7 +29,7 @@ print("""<!DOCTYPE html>
 <li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
 <li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="mypage.html">mypage<i class="fas fa-user"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></a></li>
 </ul>
 </nav>
 
@@ -136,13 +136,13 @@ print("""<!DOCTYPE html>
 
 <div id="footermenu">
 <ul>
-<li class="title">Menu</li>
+<li class="title">menu</menu></li>
 <li><a href="index.html">Home</a></li>
 <li><a href="company.html">Company</a></li>
 <li><a href="attraction.html">AttractionInfo</a></li>
-<li><a href="shopping.html">Shopping</a></li>
-<li><a href="event.html">Event</a></li>
-<li><a href="mypage.html">Mypage</a></li>
+<li><a href="shopping.html">shopping</a></li>
+<li><a href="event.html">event</a></li>
+<li><a href="mypage.cgi">Mypage</a></li>
 </ul>
 <ul>
 <li class="title">attraction</li>
@@ -171,9 +171,9 @@ print("""<!DOCTYPE html>
 <ul>
 <li><a href="index.html">Home</a></li>
 <li><a href="attraction1_hp.cgi">AttractionInfo</a></li>
-<li><a href="shopping.html">Shopping</a></li>
+<li><a href="shopping.html">Shoping</a></li>
 <li><a href="event.html">Event</a></li>
-<li><a href="mypage.html">Mypage</a></li>
+<li><a href="mypage.cgi">Mypage</a></li>
 </ul>
 </nav>
 

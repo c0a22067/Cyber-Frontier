@@ -112,10 +112,10 @@ try:
 
 <nav id="header-menu">
 <ul>
-<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
 </ul>
 </nav>
 
@@ -131,7 +131,7 @@ try:
         <input type="hidden" name="attraction" value="{attraction}">
         <input type="hidden" name="book_date" value="{book_date}">
         <p><font size="5"><font color="#000033"><strong>{attraction}</strong></font></font></p>
-        <img src="./attraction.png" style="width: 80%; height: auto; margin: 0px 0; border-radius: 10px;">
+        <img src="./images/Cf_attr1.png" style="width: 80%; height: auto; margin: 0px 0; border-radius: 10px;">
         <label for="time" style="font-size: 1.2em; display: block; margin: 10px 0;">予約時間を選択してください</label>
         <select name="time" id="time" style="padding: 10px; font-size: 1.1em; width: 100%; max-width: 300px; margin: 10px 0;">
             {time_slots_html}
@@ -170,10 +170,10 @@ try:
 
 <nav id="header-menu">
 <ul>
-<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
 </ul>
 </nav>
 

@@ -37,10 +37,10 @@ html_content = f"""
 
 <nav id="header-menu">
 <ul>
-<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
 </ul>
 </nav>
 """
@@ -126,35 +126,25 @@ try:
             </main>
             <div id="footermenu">
             <ul>
-            <li class="title">メニュー</li>
-            <li><a href="index.html">ホーム</a></li>
-            <li><a href="company.html">運営会社</a></li>
-            <li><a href="info.html">施設のご案内</a></li>
-            <li><a href="shopping.html">お買い物</a></li>
-            <li><a href="event.html">イベント</a></li>
-            <li><a href="access.html">アクセス</a></li>
-            </ul>
-            <ul>
-            <li class="title">メニュー見出し</li>
-            <li><a href="#">サンプルメニューサンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            </ul>
-            <ul>
-            <li class="title">メニュー見出し</li>
-            <li><a href="#">サンプルメニューサンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            </ul>
-            <ul>
-            <li class="title">メニュー見出し</li>
-            <li><a href="#">サンプルメニューサンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            <li><a href="#">サンプルメニュー</a></li>
-            </ul>
+<li class="title">menu</menu></li>
+<li><a href="index.html">Home</a></li>
+<li><a href="company.html">Company</a></li>
+<li><a href="attraction.html">AttractionInfo</a></li>
+<li><a href="shopping.html">shopping</a></li>
+<li><a href="event.html">event</a></li>
+<li><a href="mypage.cgi">Mypage</a></li>
+</ul>
+<ul>
+<li class="title">attraction</li>
+<li><a href="#">DEGITAL HONTET HOUSE</a></li>
+<li><a href="#">LIKE A MAZE</a></li>
+<li><a href="#">量子トンネルコースター</a></li>
+<li><a href="#">MATRIX DRIFT ARENA</a></li>
+</ul>
+<ul>
+<li class="title">event</li>
+<li><a href="event.html">Cyber Treasure Hunter</a></li>
+</ul>
             </div>
             <!--/#footermenu-->
 
@@ -167,15 +157,14 @@ try:
             <div id="menubar">
 
             <nav>
-            <ul>
-            <li><a href="index.html">ホーム</a></li>
-            <li><a href="info.html">施設のご案内</a></li>
-            <li><a href="shopping.html">お買い物</a></li>
-            <li><a href="event.html">イベント</a></li>
-            <li><a href="access.html">アクセス</a></li>
-            </ul>
-            </nav>
-            </div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="attraction1_hp.cgi">AttractionInfo</a></li>
+<li><a href="shopping.html">Shoping</a></li>
+<li><a href="event.html">Event</a></li>
+<li><a href="mypage.cgi">Mypage</a></li>
+</ul>
+</nav>
             <!--/開閉ブロック-->
             </body>
             </html>

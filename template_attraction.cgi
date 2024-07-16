@@ -39,10 +39,10 @@ print("""<!DOCTYPE html>
 
 <nav id="header-menu">
 <ul>
-<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-info-circle"></i></a></li>
-<li><a href="shopping.html">shopping<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="mypage.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
+<li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
+<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
 </ul>
 </nav>
 
@@ -90,9 +90,11 @@ print("""<!DOCTYPE html>
 </tr>
 </table>
 
-<p class="c"><a class="review-link" href="attraction1.cgi">レビューを見る</a></p>
+<h4 class="c"><a class="review-link" href="attraction1.cgi">レビューを見る</a></h4>
 
-<p class="c"><a href="javascript:history.back()">&lt;&lt; 前のページに戻る</a></p>
+<h4 class="c"><a class="review-link" href="reservation.cgi">予約する</a></h4>
+
+<h4 class="c"><a href="javascript:history.back()">&lt;&lt; 前のページに戻る</a></h4>
 
 </article>
 
@@ -100,13 +102,24 @@ print("""<!DOCTYPE html>
 
 <div id="footermenu">
 <ul>
-<li class="title">メニュー</li>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="company.html">運営会社</a></li>
-<li><a href="attraction.html">施設のご案内</a></li>
-<li><a href="shopping.html">お買い物</a></li>
-<li><a href="event.html">イベント</a></li>
-<li><a href="mypage.html">アクセス</a></li>
+<li class="title">menu</menu></li>
+<li><a href="index.html">Home</a></li>
+<li><a href="company.html">Company</a></li>
+<li><a href="attraction.html">AttractionInfo</a></li>
+<li><a href="shopping.html">shopping</a></li>
+<li><a href="event.html">event</a></li>
+<li><a href="mypage.cgi">Mypage</a></li>
+</ul>
+<ul>
+<li class="title">attraction</li>
+<li><a href="#">DEGITAL HONTET HOUSE</a></li>
+<li><a href="#">LIKE A MAZE</a></li>
+<li><a href="#">量子トンネルコースター</a></li>
+<li><a href="#">MATRIX DRIFT ARENA</a></li>
+</ul>
+<ul>
+<li class="title">event</li>
+<li><a href="event.html">Cyber Treasure Hunter</a></li>
 </ul>
 
 </div>
@@ -124,9 +137,9 @@ print("""<!DOCTYPE html>
 <ul>
 <li><a href="index.html">Home</a></li>
 <li><a href="attraction1_hp.cgi">AttractionInfo</a></li>
-<li><a href="shopping.html">Shopping</a></li>
+<li><a href="shopping.html">Shoping</a></li>
 <li><a href="event.html">Event</a></li>
-<li><a href="mypage.html">Mypage</a></li>
+<li><a href="mypage.cgi">Mypage</a></li>
 </ul>
 </nav>
 

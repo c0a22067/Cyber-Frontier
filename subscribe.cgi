@@ -20,7 +20,7 @@ def get_random_str(n):
 
 connection = MySQLdb.connect(
 	host='localhost',
-	user='user1',
+	user='root',
 	passwd='passwordA1!',
 	db='booking',
 	charset='utf8'
