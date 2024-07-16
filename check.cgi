@@ -1,17 +1,44 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>サイバーフロンティアのショッピングサイト</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ここにサイト説明を入れます">
-<link rel="stylesheet" href="css/style.css">
-</head>
+#!/usr/bin/python3
 
-<body>
+import cgi
+import crypt
+import os
+
+form = cgi.FieldStorage()
+user_name = form.getfirst('user_name')
+mail_address = form.getfirst('mail_address')
+password = form.getfirst('password')
+phone_number = form.getfirst('phone_number')
+face_pict = form.getfirst('face_pict')
+
+
+
+
+print("Content-Type: text/html\n")
+
+htmlText = '''
+<!DOCTYPE HTML>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>登録内容確認｜Cyber Frontier</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cyber Frontierの登録内容確認ページです">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="Cyber Frontier"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="遊園地"></a></h1>
+<ul id="lang-nav">
+
+<li><a href= "login.html">ログイン</a></li>
+<li><a href="mypage.cgi">マイページ</a></li>
+
+</ul>
+
 </header>
 
 <div id="container">
@@ -28,106 +55,29 @@
 <main>
 
 <section>
+<center>
+        <div id="wrapper">
+この情報を登録しますか？<br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br><br>
+<font class="login-input">%s</font><br>
+<form action="subscribe.html" method="post">
+                    <button type="submit">戻る</button><br>
+            </form>
+<form action="subscribe.cgi" method="post">
+<input type="hidden" name="user_name" value="%s">
+<input type="hidden" name="mail_address" value="%s">
+<input type="hidden" name="password" value="%s">
+<input type="hidden" name="phone_number" value="%s">
+<input type="hidden" name="face_pict" value="%s">
+                    <button type="submit">登録</button>
+            </form>
 
-<h2 class="flag">SHOP</h2>
-
-<p class="c">Cyber Frontierパーク内で買える商品をいくつか紹介!<br>
-お買い求めの際はパーク入り口すぐ右に曲ったお店にあります。</p>
-<p class="c">パークでの特別な瞬間をいつでも思い出せる、魅力的なグッズが勢揃い! 
-    パークの世界観をモチーフにデザインされたグッズになっているのでサイバー世界を存分に楽しめます。</p>
-
-
-<div class="list-container">
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos1.png" alt=""></figure>
-<div class="text">
-<h4>GRASS</h4>
-</div>
-<span class="icon">おすすめ</span>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos2.png" alt=""></figure>
-<div class="text">
-<h4>KEY RING</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos3.png" alt=""></figure>
-<div class="text">
-<h4>T - SHIRTS</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos4.png" alt=""></figure>
-<div class="text">
-<h4>HAIR BAND</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos5.png" alt=""></figure>
-<div class="text">
-<h4>PLUSH KEYCHAIN</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos6.png" alt=""></figure>
-<div class="text">
-<h4>COOKIE TIN</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos7.png" alt=""></figure>
-<div class="text">
-<h4>TUMBLER</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos8.png" alt=""></figure>
-<div class="text">
-<h4>MINI CASE</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos9.png" alt=""></figure>
-<div class="text">
-<h4>SHOULDER BAG</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos10.png" alt=""></figure>
-<div class="text">
-<h4>MOBLIE BATTERY</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos11.png" alt=""></figure>
-<div class="text">
-<h4>CUP</h4>
-</div>
-</div>
-
-<div class="list-square blur">
-<figure><img src="images/CF_goos12.png" alt=""></figure>
-<div class="text">
-<h4>PEN</h4>
-</div>
-</div>
-
-</div>
-<!--/.list-container-->
-
-</section>
+        </div>
+        
+        </center>
 
 </main>
 
@@ -180,6 +130,7 @@
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。</p>
+
 </div>
 <!--/.sh-->
 
@@ -200,6 +151,10 @@
 <!--jQueryの読み込み-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!--スライドショー（vegas）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
+<script src="js/vegas.js"></script>
+
 <!--パララックス（inview）-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
 <script src="js/jquery.inview_set.js"></script>
@@ -210,5 +165,13 @@
 <!--ページの上部へ戻るボタン-->
 <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
 
-</body>
+    </body>
 </html>
+'''%(user_name, mail_address, password, phone_number, face_pict, user_name, mail_address, password, phone_number, face_pict)
+
+print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
+
+
+
+
+

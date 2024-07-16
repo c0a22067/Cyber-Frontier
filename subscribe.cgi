@@ -1,17 +1,96 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>Cyber Frontierのアトラクション詳細ページ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="アトラクションの詳細が載っています">
-<link rel="stylesheet" href="css/style.css">
-</head>
+#!/usr/bin/python3
 
-<body>
+import cgi
+import crypt
+import os
+import MySQLdb
+from http import cookies
+import random, string
+
+form = cgi.FieldStorage()
+user_name = form.getfirst('user_name')
+mail_address = form.getfirst('mail_address')
+password = form.getfirst('password')
+phone_number = form.getfirst('phone_number')
+face_pict = form.getfirst('face_pict')
+
+def get_random_str(n):
+	char_data = string.digits + string.ascii_lowercase + string.ascii_uppercase
+	return ''.join([random.choice(char_data) for i in range(n)])
+
+connection = MySQLdb.connect(
+	host='localhost',
+	user='root',
+	passwd='passwordA1!',
+	db='booking',
+	charset='utf8'
+)
+
+hashed_password = ''
+
+cpass = ''
+salt = crypt.mksalt(method=crypt.METHOD_BLOWFISH)
+if(password != None and salt != ''):
+	cpass = crypt.crypt(password, salt)
+
+cursor = connection.cursor()
+sql = "insert into User_data values(NULL, '"+ user_name +"','"+ mail_address +"','"+ cpass +"','"+ phone_number +"','"+ face_pict +"')"
+
+cursor.execute(sql)
+rows = cursor.fetchall()	
+connection.commit()
+
+sql = "select user_id from User_data where name='" + user_name + "'"
+cursor.execute(sql)
+rows = cursor.fetchall()	
+
+user_id = str(rows[0][0])
+
+connection.close()
+
+session_id = get_random_str(64)
+
+connection = MySQLdb.connect(
+	host='localhost',
+	user='user1',
+	passwd='passwordA1!',
+	db='booking',
+	charset='utf8'
+)
+
+cursor = connection.cursor()
+
+sql = "insert into `Session` (`user_id`, `session_id`) values ('"+ user_id +"', '" + session_id + "') on duplicate key update session_id = '" + session_id + "'"
+
+cursor.execute(sql)
+
+connection.commit()
+
+print("Conten-Type: text/html")
+print("Set-Cookie: user_id=" + user_id)
+print("Set-Cookie: session_id=" + session_id)
+
+htmlText = '''
+<!DOCTYPE HTML>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>登録完了｜Cyber Frontier</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cyber Frontierの登録完了ページです">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="道の駅"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="遊園地"></a></h1>
+<ul id="lang-nav">
+<li><a href="">English</a></li>
+<li><a href="">中文</a></li>
+</ul>
+
 </header>
 
 <div id="container">
@@ -28,66 +107,17 @@
 <main>
 
 <section>
-
-<h2 class="flag">イベント<span>Event</span></h2>
-
-<table class="ta1">
-<caption>12月のイベントのお知らせ</caption>
-<tr>
-<th>12月1日</th>
-<td><img src="images/sample1.jpg" alt="">
-毎月恒例の朝市を開催します。
-<ul>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-<li>サンプルテキスト。サンプルテキスト。サンプルテキスト。</li>
-</ul>
-<p class="btn"><a href="#">詳しくはこちら</a></p>
-</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-<tr>
-<th>XX月XX日</th>
-<td>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</td>
-</tr>
-</table>
-
-</section>
+<center>
+        <div id="wrapper">
+        登録しました。<br>
+            <form action="mypage.html" method="post">
+                    <button type="submit">続ける</button>
+                    <input type="hidden" name="user_name">
+                    <input type="hidden" name="session_id">
+            </form>
+        </div>
+        
+        </center>
 
 </main>
 
@@ -150,6 +180,7 @@
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。<br>
 サンプルテキスト。サンプルテキスト。</p>
+
 </div>
 <!--/.sh-->
 
@@ -170,6 +201,10 @@
 <!--jQueryの読み込み-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!--スライドショー（vegas）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
+<script src="js/vegas.js"></script>
+
 <!--パララックス（inview）-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
 <script src="js/jquery.inview_set.js"></script>
@@ -180,5 +215,13 @@
 <!--ページの上部へ戻るボタン-->
 <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
 
-</body>
+    </body>
 </html>
+'''
+
+print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
+
+
+
+
+
