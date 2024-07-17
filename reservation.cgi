@@ -13,9 +13,10 @@ def get_random(n):
     return ''.join(str(random.randrange(10)) for _ in range(n))
 
 form = cgi.FieldStorage()
-attraction = form.getvalue('attraction', 'attraction')
+attraction = form.getvalue('attraction', '量子トンネルコースター')
 cookie = SimpleCookie()
 user_id = ""
+session_id_s = ""
 cookie.load(cookie_string)
 
 for key, morsel in cookie.items():
@@ -29,14 +30,14 @@ book_id = get_random(5)
 try:
     connection = MySQLdb.connect(
         host='localhost',
-        user='root',
+        user='user1',
         passwd='passwordA1!',
         db='booking',
         charset='utf8'
     )
     cursor = connection.cursor()
-    sql = "select session_id from Session where user_id ='" + user_id + "'"
-    cursor.execute(sql)
+    sql = "select session_id from Session where user_id = %s"
+    cursor.execute(sql, (user_id,))
     rows = cursor.fetchall()
     session_id = ''
     f_login = -1
@@ -91,6 +92,14 @@ try:
     print("Content-Type: text/html; charset=utf-8\n")
 
     if f_login == 0:
+        attraction_images = {
+            "量子トンネルコースター": "./images/Cf_attr3.png",
+            "Digital Haunted House": "./images/Cf_attr1.png",
+            "Like A Maze": "./images/Cf_attr2.png",
+            "Matrix Drift Arena2.0": "./images/CF_attr4.png"
+        }
+        attraction_image = attraction_images.get(attraction, "./default.png")
+
         html_content = f"""
 <!DOCTYPE html>
 <html lang="ja">
@@ -100,6 +109,11 @@ try:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="マイページ画面">
 <link rel="stylesheet" href="./style.css">
+<script>
+    function submitForm() {{
+        document.getElementById('attractionForm').submit();
+    }}
+</script>
 </head>
 
 <body>
@@ -112,26 +126,39 @@ try:
 
 <nav id="header-menu">
 <ul>
-<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
+<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
-<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
+<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
+<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
 </ul>
 </nav>
 
 <main>
 <section style="text-align: center; padding: 20px; max-width: 600px; margin: auto; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+    <h2><b><font color="#000033">アトラクション選択</font></b></h2>
+    <hr>
+    <br>
+    <form id="attractionForm" action="reservation.cgi" method="post">
+        <label for="attraction" style="font-size: 1.2em; display: block; margin: 10px 0;">アトラクションを選択してください</label>
+        <select id="attraction" name="attraction" required onchange="submitForm()">
+            <option value="量子トンネルコースター" {'selected' if attraction == '量子トンネルコースター' else ''}>量子トンネルコースター</option>
+            <option value="Digital Haunted House" {'selected' if attraction == 'Digital Haunted House' else ''}>Digital Haunted House</option>
+            <option value="Like A Maze" {'selected' if attraction == 'Like A Maze' else ''}>Like A Maze</option>
+            <option value="Matrix Drift Arena2.0" {'selected' if attraction == 'Matrix Drift Arena2.0' else ''}>Matrix Drift Arena2.0</option>
+        </select>
+    </form>
+    <hr>
     <h2><b><font color="#000033">アトラクション予約</font></b></h2>
     <hr>
     <br>
-    <form action="./reservation_confirmation.cgi" method="post">
+    <form id="reservationForm" action="reservation_confirmation.cgi" method="post">
         <input type="hidden" name="name" value="{name}">
         <input type="hidden" name="mail" value="{mail}">
         <input type="hidden" name="user_id" value="{user_id}">
-        <input type="hidden" name="attraction" value="{attraction}">
         <input type="hidden" name="book_date" value="{book_date}">
+        <input type="hidden" name="attraction" value="{attraction}">
         <p><font size="5"><font color="#000033"><strong>{attraction}</strong></font></font></p>
-        <img src="./images/Cf_attr1.png" style="width: 80%; height: auto; margin: 0px 0; border-radius: 10px;">
+        <img src="{attraction_image}" style="width: 80%; height: auto; margin: 0px 0; border-radius: 10px;">
         <label for="time" style="font-size: 1.2em; display: block; margin: 10px 0;">予約時間を選択してください</label>
         <select name="time" id="time" style="padding: 10px; font-size: 1.1em; width: 100%; max-width: 300px; margin: 10px 0;">
             {time_slots_html}
@@ -170,10 +197,10 @@ try:
 
 <nav id="header-menu">
 <ul>
-<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
+<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
-<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
+<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
+<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
 </ul>
 </nav>
 

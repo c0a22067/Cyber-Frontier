@@ -26,6 +26,20 @@ print("""<!DOCTYPE html>
     .review-link:hover {
         text-decoration: underline;  /* ホバー時に下線を表示 */
     }
+    /* ログインボタンのスタイル */
+    button.login-btn {
+    background-color: #007bff; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    border: none; /* ボーダーをなしにする */
+    padding: 10px 20px; /* 上下左右の余白 */
+    font-size: 16px; /* 文字サイズ */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    border-radius: 5px; /* ボタンの角を丸める */
+    }
+
+button.login-btn:hover {
+    background-color: #0056b3; /* ホバー時の背景色 */
+}
 </style>
 </head>
 
@@ -89,10 +103,13 @@ print("""<!DOCTYPE html>
 <p>乗り物に酔いやすい方はご利用をご遠慮ください。</p></td>
 </tr>
 </table>
+<center><form method="post" action="./attraction1.cgi"><button type="submit" class="login-btn">レビューを見る</button></form></center>
+<br>
 
-<h4 class="c"><a class="review-link" href="attraction1.cgi">レビューを見る</a></h4>
+<center><form method="post" action="./reservation.cgi"><button type="submit" class="login-btn">予約する</button></form></center>
 
-<h4 class="c"><a class="review-link" href="reservation.cgi">予約する</a></h4>
+
+
 
 <h4 class="c"><a href="javascript:history.back()">&lt;&lt; 前のページに戻る</a></h4>
 

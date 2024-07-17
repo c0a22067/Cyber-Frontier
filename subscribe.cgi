@@ -5,44 +5,53 @@ import crypt
 import os
 import MySQLdb
 from http import cookies
-import random, string
+import random
+import string
+from PIL import Image
+import io
 
 form = cgi.FieldStorage()
 user_name = form.getfirst('user_name')
 mail_address = form.getfirst('mail_address')
 password = form.getfirst('password')
 phone_number = form.getfirst('phone_number')
-face_pict = form.getfirst('face_pict')
+face_pict_file = form['face_pict']
 
 def get_random_str(n):
-	char_data = string.digits + string.ascii_lowercase + string.ascii_uppercase
-	return ''.join([random.choice(char_data) for i in range(n)])
+    char_data = string.digits + string.ascii_lowercase + string.ascii_uppercase
+    return ''.join([random.choice(char_data) for i in range(n)])
 
-connection = MySQLdb.connect(
-	host='localhost',
-	user='root',
-	passwd='passwordA1!',
-	db='booking',
-	charset='utf8'
-)
+# バイナリーデータとしてファイルを読み込む
+face_pict_binary = face_pict_file.file.read()
+
+# バイナリーデータを画像に変換
+image = Image.open(io.BytesIO(face_pict_binary))
 
 hashed_password = ''
 
 cpass = ''
 salt = crypt.mksalt(method=crypt.METHOD_BLOWFISH)
 if(password != None and salt != ''):
-	cpass = crypt.crypt(password, salt)
+    cpass = crypt.crypt(password, salt)
+
+connection = MySQLdb.connect(
+    host='localhost',
+    user='user1',
+    passwd='passwordA1!',
+    db='booking',
+    charset='utf8'
+)
 
 cursor = connection.cursor()
-sql = "insert into User_data values(NULL, '"+ user_name +"','"+ mail_address +"','"+ cpass +"','"+ phone_number +"','"+ face_pict +"')"
+sql = "INSERT INTO User_data (name, password, phone_number, mail_address, face_pict) VALUES (%s, %s, %s, %s, %s)"
+values = (user_name, cpass, phone_number, mail_address, face_pict_binary)
 
-cursor.execute(sql)
-rows = cursor.fetchall()	
+cursor.execute(sql, values)
 connection.commit()
 
-sql = "select user_id from User_data where name='" + user_name + "'"
-cursor.execute(sql)
-rows = cursor.fetchall()	
+sql = "SELECT user_id FROM User_data WHERE name = %s"
+cursor.execute(sql, (user_name,))
+rows = cursor.fetchall()
 
 user_id = str(rows[0][0])
 
@@ -51,177 +60,147 @@ connection.close()
 session_id = get_random_str(64)
 
 connection = MySQLdb.connect(
-	host='localhost',
-	user='user1',
-	passwd='passwordA1!',
-	db='booking',
-	charset='utf8'
+    host='localhost',
+    user='user1',
+    passwd='passwordA1!',
+    db='booking',
+    charset='utf8'
 )
 
 cursor = connection.cursor()
 
-sql = "insert into `Session` (`user_id`, `session_id`) values ('"+ user_id +"', '" + session_id + "') on duplicate key update session_id = '" + session_id + "'"
-
-cursor.execute(sql)
+sql = "INSERT INTO Session (`user_id`, `session_id`) VALUES (%s, %s) ON DUPLICATE KEY UPDATE session_id = %s"
+cursor.execute(sql, (user_id, session_id, session_id))
 
 connection.commit()
 
-print("Conten-Type: text/html")
+# レスポンスのヘッダーとHTMLの出力
+print("Content-Type: text/html")
 print("Set-Cookie: user_id=" + user_id)
 print("Set-Cookie: session_id=" + session_id)
+print()
 
-htmlText = '''
-<!DOCTYPE HTML>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>登録完了｜Cyber Frontier</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Cyber Frontierの登録完了ページです">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
-<link rel="stylesheet" href="css/style.css">
+# HTMLを出力
+print('<!DOCTYPE HTML>')
+print('<html lang="ja">')
+print('<head>')
+print('<meta charset="UTF-8">')
+print('<title>登録完了｜Cyber Frontier</title>')
+print('<meta name="viewport" content="width=device-width, initial-scale=1">')
+print('<meta name="description" content="Cyber Frontierの登録完了ページです">')
+print('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">')
+print('<link rel="stylesheet" href="css/style.css">')
+print('</head>')
+print('<body>')
 
-    </head>
-    <body>
+print('<header>')
+print('<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="遊園地"></a></h1>')
+print('<ul id="lang-nav">')
+print('<li><a href= "login.html">ログイン</a></li>')
+print('<li><a href="mypage.cgi">マイページ</a></li>')
+print('</ul>')
+print('</header>')
 
-<header>
-<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="遊園地"></a></h1>
-<ul id="lang-nav">
-<li><a href="">English</a></li>
-<li><a href="">中文</a></li>
-</ul>
+print('<div id="container">')
 
-</header>
+print('<nav id="header-menu">')
+print('<ul>')
+print('<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-info-circle"></i></a></li>')
+print('<li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>')
+print('<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>')
+print('<li><a href="mypage.cgi">mypage<i class="fas fa-map-marker-alt"></i></a></li>')
+print('</ul>')
+print('</nav>')
 
-<div id="container">
+print('<main>')
 
-<nav id="header-menu">
-<ul>
-<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
-<li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
-</ul>
-</nav>
+print('<section>')
+print('<center>')
+print('<div id="wrapper">')
+print('登録しました。<br>')
+print('<form action="mypage.cgi" method="post">')
+print('<button type="submit">続ける</button>')
+print('<input type="hidden" name="user_name" value="{}">'.format(user_name))
+print('<input type="hidden" name="session_id" value="{}">'.format(session_id))
+print('</form>')
+print('</div>')
+print('</center>')
+print('</section>')
 
-<main>
+print('</main>')
 
-<section>
-<center>
-        <div id="wrapper">
-        登録しました。<br>
-            <form action="mypage.html" method="post">
-                    <button type="submit">続ける</button>
-                    <input type="hidden" name="user_name">
-                    <input type="hidden" name="session_id">
-            </form>
-        </div>
-        
-        </center>
+print('<div id="footermenu">')
+print('<ul>')
+print('<li class="title">メニュー</li>')
+print('<li><a href="index.html">Home</a></li>')
+print('<li><a href="company.html">Company</a></li>')
+print('<li><a href="info.html">attraction1_hp.cgi</a></li>')
+print('<li><a href="shopping.html">お買い物</a></li>')
+print('<li><a href="event.html">イベント</a></li>')
+print('<li><a href="access.html">アクセス</a></li>')
+print('</ul>')
 
-</main>
+print('</div>')
+print('<!--/#footermenu-->')
 
-<div id="footermenu">
-<ul>
-<li class="title">メニュー</li>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="company.html">運営会社</a></li>
-<li><a href="info.html">施設のご案内</a></li>
-<li><a href="shopping.html">お買い物</a></li>
-<li><a href="event.html">イベント</a></li>
-<li><a href="access.html">アクセス</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-<ul>
-<li class="title">メニュー見出し</li>
-<li><a href="#">サンプルメニューサンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-<li><a href="#">サンプルメニュー</a></li>
-</ul>
-</div>
-<!--/#footermenu-->
+print('<footer>')
+print('<small>Copyright&copy; <a href="index.html">道の駅</a> All Rights Reserved.</small>')
+print('<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>')
+print('</footer>')
 
-<footer>
-<small>Copyright&copy; <a href="index.html">道の駅</a> All Rights Reserved.</small>
-<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-</footer>
+print('<!--開閉ブロック-->')
+print('<div id="menubar">')
 
-<!--開閉ブロック-->
-<div id="menubar">
+print('<nav>')
+print('<ul>')
+print('<li><a href="index.html">Home</a></li>')
+print('<li><a href="attraction1_hp.cgi">AttractionInfo</a></li>')
+print('<li><a href="shopping.html">Shopping</a></li>')
+print('<li><a href="event.html">Event</a></li>')
+print('<li><a href="mypage.cgi">Mypage</a></li>')
+print('</ul>')
+print('</nav>')
 
-<nav>
-<ul>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="info.html">施設のご案内</a></li>
-<li><a href="shopping.html">お買い物</a></li>
-<li><a href="event.html">イベント</a></li>
-<li><a href="access.html">アクセス</a></li>
-</ul>
-</nav>
+print('<p class="btn"><a href="contact.html">お問い合わせ</a></p>')
 
-<p class="btn"><a href="contact.html">お問い合わせ</a></p>
+print('<div class="sh">')
+print('<!-- 900px未満のメニュー開閉時にのみ表示させたい情報 -->')
+print('<p>サンプルテキスト。サンプルテキスト。<br>')
+print('サンプルテキスト。サンプルテキスト。<br>')
+print('サンプルテキスト。サンプルテキスト。</p>')
+print('</div>')
+print('<!--/.sh-->')
 
-<div class="sh">
-<p>※900px未満のメニュー開閉時にのみ表示させたい情報があればここ（shボックスの中）に入れて下さい。<br>
-サンプルテキスト。サンプルテキスト。<br>
-サンプルテキスト。サンプルテキスト。<br>
-サンプルテキスト。サンプルテキスト。</p>
+print('</div>')
+print('<!--/#menubar-->')
 
-</div>
-<!--/.sh-->
+print('<!--開閉ボタン（ハンバーガーアイコン）-->')
+print('<div id="menubar_hdr">')
+print('<div>')
+print('<span></span><span></span><span></span>')
+print('</div>')
+print('<p>MENU</p>')
+print('</div>')
 
-</div>
-<!--/#menubar-->
+print('</div>')
+print('<!--/#container-->')
 
-<!--開閉ボタン（ハンバーガーアイコン）-->
-<div id="menubar_hdr">
-<div>
-<span></span><span></span><span></span>
-</div>
-<p>MENU</p>
-</div>
+print('<!--jQueryの読み込み-->')
+print('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>')
 
-</div>
-<!--/#container-->
+print('<!--スライドショー（vegas）-->')
+print('<script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>')
+print('<script src="js/vegas.js"></script>')
 
-<!--jQueryの読み込み-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+print('<!--パララックス（inview）-->')
+print('<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>')
+print('<script src="js/jquery.inview_set.js"></script>')
 
-<!--スライドショー（vegas）-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.js"></script>
-<script src="js/vegas.js"></script>
+print('<!--このテンプレート専用のスクリプト-->')
+print('<script src="js/main.js"></script>')
 
-<!--パララックス（inview）-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
-<script src="js/jquery.inview_set.js"></script>
+print('<!--ページの上部へ戻るボタン-->')
+print('<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>')
 
-<!--このテンプレート専用のスクリプト-->
-<script src="js/main.js"></script>
-
-<!--ページの上部へ戻るボタン-->
-<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
-
-    </body>
-</html>
-'''
-
-print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
-
-
-
-
-
+print('</body>')
+print('</html>')

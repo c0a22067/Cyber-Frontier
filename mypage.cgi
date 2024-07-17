@@ -112,7 +112,7 @@ button.login-btn:hover {
 <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="images/logo_home.png" alt="Cyber-Frontier"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="Cyber-Frontier"></a></h1>
 </header>
 
 <div id="container">

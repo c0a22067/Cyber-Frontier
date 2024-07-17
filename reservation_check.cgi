@@ -30,7 +30,7 @@ html_content = f"""
 <body>
 
 <header>
-<h1 id="logo"><a href="index.html"><img src="./logo.png" alt="Cyber Frontier"></a></h1>
+<h1 id="logo"><a href="index.html"><img src="images/CF_logo.PNG" alt="Cyber Frontier"></a></h1>
 </header>
 
 <div id="container">
@@ -170,7 +170,7 @@ try:
             </html>
             """
         else:
-            html_content += "<p>予約情報が見つかりませんでした。</p>"
+            html_content += "<br><br><center><p>予約情報が見つかりませんでした。</p></center>"
 
     else:
         html_content += "<p>ログインしていません。</p>"
