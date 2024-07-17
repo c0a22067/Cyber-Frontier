@@ -9,7 +9,7 @@ user_name = form.getfirst('user_name')
 mail_address = form.getfirst('mail_address')
 password = form.getfirst('password')
 phone_number = form.getfirst('phone_number')
-face_pict = form.getfirst('face_pict')
+face_pict = form['face_pict']
 
 
 
