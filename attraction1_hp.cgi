@@ -53,7 +53,7 @@ print("""<!DOCTYPE html>
 </div>
 
 <div class="list blur">
-<figure><a href="article.html"><img src="images/sample7.png" alt=""></a></figure>
+<figure><a href="attraction1_hp.cgi"><img src="images/sample7.png" alt=""></a></figure>
 <div class="text">
 <h4>Digital Haunted House</h4>
 <p>サイバー空間の悪夢をテーマにした革新的なホラーアトラクション</p>
@@ -73,7 +73,7 @@ print("""<!DOCTYPE html>
 </div>
 
 <div class="list blur">
-<figure><a href="article.html"><img src="images/sample9.png" alt=""></a></figure>
+<figure><a href="attraction1_hp.cgi"><img src="images/sample9.png" alt=""></a></figure>
 <div class="text">
 <h4>Matrix Drift Arena2.0</h4>
 <p>最新のシミュレーション技術とホログラフィックエフェクトを駆使しバーチャルリアリティの中でドリフトレースが体験できる</p>

@@ -105,10 +105,10 @@ print('<div id="container">')
 
 print('<nav id="header-menu">')
 print('<ul>')
-print('<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-info-circle"></i></a></li>')
+print('<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>')
 print('<li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>')
 print('<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>')
-print('<li><a href="mypage.cgi">mypage<i class="fas fa-map-marker-alt"></i></a></li>')
+print('<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></a></li>')
 print('</ul>')
 print('</nav>')
 

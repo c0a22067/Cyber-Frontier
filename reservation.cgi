@@ -126,29 +126,27 @@ try:
 
 <nav id="header-menu">
 <ul>
-<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
 </ul>
 </nav>
 
 <main>
 <section style="text-align: center; padding: 20px; max-width: 600px; margin: auto; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
-    <h2><b><font color="#000033">アトラクション選択</font></b></h2>
+<p><font size="5"><font color="#000033"><strong>アトラクション予約</strong></font></font></p>
     <hr>
-    <br>
-    <form id="attractionForm" action="reservation.cgi" method="post">
+        <form id="attractionForm" action="reservation.cgi" method="post">
         <label for="attraction" style="font-size: 1.2em; display: block; margin: 10px 0;">アトラクションを選択してください</label>
-        <select id="attraction" name="attraction" required onchange="submitForm()">
+        <select id="attraction" style="padding: 10px; font-size: 1.1em; width: 100%; max-width: 300px; margin: 10px 0;" name="attraction" required onchange="submitForm()">
             <option value="量子トンネルコースター" {'selected' if attraction == '量子トンネルコースター' else ''}>量子トンネルコースター</option>
             <option value="Digital Haunted House" {'selected' if attraction == 'Digital Haunted House' else ''}>Digital Haunted House</option>
             <option value="Like A Maze" {'selected' if attraction == 'Like A Maze' else ''}>Like A Maze</option>
             <option value="Matrix Drift Arena2.0" {'selected' if attraction == 'Matrix Drift Arena2.0' else ''}>Matrix Drift Arena2.0</option>
         </select>
     </form>
-    <hr>
-    <h2><b><font color="#000033">アトラクション予約</font></b></h2>
+    <br>
     <hr>
     <br>
     <form id="reservationForm" action="reservation_confirmation.cgi" method="post">
@@ -197,10 +195,10 @@ try:
 
 <nav id="header-menu">
 <ul>
-<li><a href="info.html">attraction<i class="fas fa-info-circle"></i></a></li>
+<li><a href="attraction1_hp.cgi">attraction<i class="fas fa-rocket"></i></a></li>
 <li><a href="shopping.html">shop<i class="fas fa-shopping-basket"></i></a></li>
-<li><a href="event.html">event<i class="far fa-calendar-alt"></i></a></li>
-<li><a href="access.html">mypage<i class="fas fa-map-marker-alt"></i></a></li>
+<li><a href="event.html">event<i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="mypage.cgi">mypage<i class="fas fa-user"></i></i></a></li>
 </ul>
 </nav>
 
