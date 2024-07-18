@@ -4,83 +4,86 @@ import MySQLdb
 import cgi
 from http.cookies import SimpleCookie
 import os
-cookie_string = os.environ.get('HTTP_COOKIE', '')
 
 # フォームデータを取得
 form = cgi.FieldStorage()
 logout_requested = form.getvalue('logout')
 
-user_name =""
-phone_number=""
-email_address=""
+user_name = ""
+phone_number = ""
+email_address = ""
 user_id = ""
 session_id = ""
 session_id_s = ""
-info = ['ユーザ名','電話番号','メールアドレス']
+info = ['ユーザ名', '電話番号', 'メールアドレス']
 user_info = []
 
+# クッキーからセッションIDとユーザIDを取得
+cookie_string = os.environ.get('HTTP_COOKIE', '')
 cookie = SimpleCookie()
 cookie.load(cookie_string)
 
-for key, morsel in cookie.items():
- if key == "user_id":
-  user_id = morsel.value
- elif key == "session_id":
-  session_id_s = morsel.value
+if 'user_id' in cookie and 'session_id' in cookie:
+    user_id = cookie['user_id'].value
+    session_id_s = cookie['session_id'].value
 
+# データベースに接続
 connection = MySQLdb.connect(
- host='localhost',
- user='root',
- passwd='passwordA1!',
- db='booking',
- charset='utf8'
+    host='localhost',
+    user='root',
+    passwd='passwordA1!',
+    db='booking',
+    charset='utf8'
 )
+
 cursor = connection.cursor()
-sql = "select session_id from Session where user_id ='" + user_id + "'"
-cursor.execute(sql)
+
+# セッションIDをデータベースで確認
+sql = "SELECT session_id FROM Session WHERE user_id = %s"
+cursor.execute(sql, (user_id,))
 rows = cursor.fetchall()
 session_id = ''
+
 for row in rows:
- session_id = row[0]
+    session_id = row[0]
+
 f_login = -1
-if(session_id == session_id_s):
- f_login = 0
+if session_id == session_id_s:
+    f_login = 0
 
 comments = ''
-if(f_login == 0):
- cursor = connection.cursor()
- sql = "select * from User_data"
- cursor.execute(sql)
- rows2 = cursor.fetchall()
- for row2 in rows2:
-  if(str(row2[0]) == user_id):
-    user_name = row2[1]
-    phone_number=row2[4]
-    email_address=row2[2]
-    user_info = [user_name,phone_number,email_address]
-    comments = row2[1] + 'さんこんにちは'
-    login = '<form method="post" action="mypage.cgi"><input type="hidden" name="logout" value="1"><button type="submit" class="login-btn">ログアウト</button></form>'
+login = ''
+
+if f_login == 0:
+    # ログインしている場合はユーザ情報を取得
+    sql = "SELECT * FROM User_data WHERE user_id = %s"
+    cursor.execute(sql, (user_id,))
+    rows2 = cursor.fetchall()
+    for row2 in rows2:
+        user_name = row2[1]
+        phone_number = row2[4]
+        email_address = row2[2]
+        user_info = [user_name, phone_number, email_address]
+        comments = f"{user_name} さんこんにちは"
+        login = '<form method="post" action="mypage.cgi"><input type="hidden" name="logout" value="1"><button type="submit" class="login-btn">ログアウト</button></form>'
 else:
- comments = 'ゲストさんこんにちは'
- login = '<form method="post" action="./login.html"><button type="submit" class="login-btn">ログイン</button></form>'
+    comments = 'ゲストさんこんにちは'
+    login = '<form method="post" action="./login.html"><button type="submit" class="login-btn">ログイン</button></form>'
+
+# ログアウト処理
 if logout_requested:
     cookie['user_id'] = ''
     cookie['user_id']['expires'] = 'Thu, 01 Jan 1970 00:00:00 GMT'
     cookie['session_id'] = ''
     cookie['session_id']['expires'] = 'Thu, 01 Jan 1970 00:00:00 GMT'
     print(cookie.output())
-    print("Set-Cookie: session_id=abcd1234")
-    
+
     # JavaScriptを使用して自動的にリダイレクトする
     print("Content-Type: text/html\n")
     print('<html><head><script>window.location.replace("mypage.cgi");</script></head><body></body></html>')
+    exit()
 
-
-    
-
-print("Content-Type: text/html\n")
-connection.close()
-
+# HTMLの生成
 htmlText = '''
 <!DOCTYPE html>
 <html lang="ja">
@@ -90,7 +93,6 @@ htmlText = '''
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="マイページ画面">
 <link rel="stylesheet" href="css/style.css">
-</head>
 <style>
 /* ログインボタンのスタイル */
 button.login-btn {
@@ -105,10 +107,9 @@ button.login-btn {
 
 button.login-btn:hover {
     background-color: #0056b3; /* ホバー時の背景色 */
-
-
+}
 </style>
-
+</head>
 <body>
 
 <header>
