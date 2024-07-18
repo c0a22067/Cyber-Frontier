@@ -142,7 +142,17 @@
 
 <!--ページの上部へ戻るボタン-->
 <div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+<script>
+    function deleteCookie(name) {
+        // 現在の日時を取得し、過去の日付に設定することでクッキーを削除する
+        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
 
+    // ページがアンロードされる直前にクッキーを削除
+    window.addEventListener('beforeunload', function() {
+        deleteCookie('session_id');
+    });
+</script>
 </body>
 
 </html>
